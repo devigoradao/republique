@@ -1,1 +1,38 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#112b29"/><meta name="description" content="Governe por quatro anos. Descubra o impacto das suas decisões em República — O Poder das Escolhas."/><title>República — O Poder das Escolhas</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="theme-color" content="#112b29"/>
+    <meta name="description" content="Governe por quatro anos. Descubra o impacto das suas decisões em República — O Poder das Escolhas."/>
+    <title>República — O Poder das Escolhas</title>
+  </head>
+  <body>
+    <div id="root">
+      <main style="max-width:620px;margin:12vh auto;padding:28px;font:16px/1.7 system-ui;color:#234438">
+        <h1 style="font:36px Georgia">República</h1>
+        <p id="startup-title">Preparando seu gabinete…</p>
+        <div id="startup-help" hidden>
+          <p>O aplicativo ainda não carregou. Este projeto React precisa ser compilado antes de funcionar.</p>
+          <p><strong>No GitHub Pages:</strong> selecione Settings → Pages → Source → GitHub Actions. Depois execute Actions → Publicar no GitHub Pages → Run workflow e aguarde os passos build e deploy ficarem verdes.</p>
+          <p><strong>No computador:</strong> execute <code>npm install</code> e <code>npm run dev</code> na pasta do projeto; abra a URL mostrada. Abrir o index.html por duplo clique não executa o jogo.</p>
+          <p>Se o deploy já terminou, atualize a página sem cache e confira se o navegador está bloqueando JavaScript.</p>
+        </div>
+        <noscript>Ative JavaScript no navegador para jogar.</noscript>
+      </main>
+    </div>
+    <script>
+      // This diagnostic remains useful even when raw sources are served by mistake.
+      function showStartupHelp() {
+        var title = document.getElementById('startup-title');
+        var help = document.getElementById('startup-help');
+        if (title && help) { title.textContent = 'Não foi possível abrir o jogo.'; help.hidden = false; }
+      }
+      if (location.protocol === 'file:') showStartupHelp();
+      window.addEventListener('error', showStartupHelp, true);
+      window.addEventListener('unhandledrejection', showStartupHelp);
+      setTimeout(showStartupHelp, 12000);
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

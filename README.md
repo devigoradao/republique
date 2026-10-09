@@ -6,7 +6,7 @@ MVP de um jogo de governo em português: 24 decisões de dois meses, quatro anos
 
 1. Extraia o ZIP e crie um repositório no GitHub.
 2. Envie **o conteúdo da pasta `republica` para a raiz do repositório**, incluindo `.github`, `.gitignore` e `.nvmrc`. Não envie a pasta ZIP inteira como um único arquivo.
-3. A aba Actions executa os testes e a compilação em pushes para `main` ou `master` e em pull requests.
+3. Em **Settings → Pages → Source**, selecione **GitHub Actions**. A aba Actions executa testes, build e deploy a cada push para `main` ou `master`. Não selecione **Deploy from a branch** para publicar os arquivos-fonte deste projeto.
 
 Não há credenciais, identificadores de hosting, dependências instaladas ou arquivos de referência do projeto ChatGPT neste pacote.
 
@@ -39,7 +39,16 @@ As dependências não foram instaladas nesta entrega, por solicitação do usuá
 2. Em **Actions → Publicar no GitHub Pages**, clique em **Run workflow**.
 3. Após testes e build, o workflow publica a pasta `dist` e exibe a URL na execução.
 
-O deploy é manual. O workflow de validação não publica automaticamente. A opção `base: './'` no Vite permite hospedar sob o caminho de um repositório. A disponibilidade de Pages depende da visibilidade do repositório e do plano da conta.
+O deploy acontece a cada push para `main` ou `master` e também pode ser iniciado manualmente. A opção `base: './'` no Vite permite hospedar sob o caminho de um repositório. A disponibilidade de Pages depende da visibilidade do repositório e do plano da conta. O workflow de publicação detecta o aplicativo na raiz ou dentro de `republica/`, mas o arquivo do workflow precisa estar em `.github/workflows/pages.yml` na raiz do repositório para o GitHub reconhecê-lo.
+
+### Tela em branco ou aviso de que o jogo não carregou
+
+- Abrir `index.html` por duplo clique não executa TypeScript/React. Use `npm run dev` e a URL mostrada, ou a URL publicada após o build.
+- No Pages, servir `index.html` e `src/` diretamente também não funciona. Selecione **GitHub Actions** como fonte e publique o artefato `dist` usando o workflow incluído.
+- Confira **Actions → Publicar no GitHub Pages**. Os jobs `build` e `deploy` precisam terminar com sucesso. Uma execução vermelha significa que o app não foi publicado; abra o passo que falhou para ler o erro.
+- Se **Publicar no GitHub Pages** não aparece, confira se `.github/workflows/pages.yml` está na raiz do repositório. Enviar apenas o ZIP não basta.
+- Depois de um deploy bem-sucedido, atualize sem cache (`Ctrl+Shift+R`) e use a URL exibida pelo job `deploy`.
+- O HTML inclui uma orientação de inicialização caso o app não carregue, em vez de deixar o usuário com uma tela vazia. Esse aviso não substitui o build.
 
 ### Vercel ou Netlify
 
